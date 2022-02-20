@@ -1,0 +1,8 @@
+{
+  "extends": "@tsconfig/node12/tsconfig.json",
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "esModuleInterop": true
+  },
+  "files": ["index.ts"]
+}
