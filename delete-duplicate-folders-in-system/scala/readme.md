@@ -1,0 +1,4 @@
+```
+sbt compile
+sbt run
+```
