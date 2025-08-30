@@ -1,17 +1,25 @@
-const _ = require('lodash')
-const R = require('ramda')
-const Mocha = require('mocha')
-const assert = require('assert')
+import _ from 'lodash';
+import * as R from 'ramda';
+import Mocha from 'mocha';
+import assert from 'assert';
+import util from 'util';
 
-const mocha = new Mocha()
+const mocha = new Mocha();
+mocha.suite.emit('pre-require', globalThis, 'solution', mocha);
 
-// Bit of a hack, sorry!
-mocha.suite.emit('pre-require', this, 'solution', mocha)
+const deepLog = (...args) => {
+  const inspectedArgs = args.map(arg =>
+    typeof arg === 'object' ? util.inspect(arg, { depth: null, colors: true }) : arg
+  );
+  originalLog(...inspectedArgs);
+};
+
+const range = (start, end) => Array.from({ length: end - start + 1 }, (_, i) => i + start);
 
 describe('Test suite', () => {
   it('should work', () => {
-    assert.equal([1, 2, 3].length, 3)
-  })
-})
+    assert.equal([1, 2, 3].length, 3);
+  });
+});
 
-mocha.run()
+mocha.run();
